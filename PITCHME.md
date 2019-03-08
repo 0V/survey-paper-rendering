@@ -18,7 +18,9 @@ Twitter: [@G2U](https://twitter.com/G2U)
 
 ---
 
-#### Title
+### Title
+
+---
 
 ##### Overview
 
@@ -50,7 +52,9 @@ Twitter: [@G2U](https://twitter.com/G2U)
 
 ---
 
-#### Unbiased, Adaptive Stochastic Sampling for Rendering Inhomogeneous Participating Media
+### Unbiased, Adaptive Stochastic Sampling for Rendering Inhomogeneous Participating Media
+
+---
 
 ##### Overview
 
