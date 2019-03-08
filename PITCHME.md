@@ -28,6 +28,8 @@ Twitter: [@G2U](https://twitter.com/G2U)
 
 先行研究との比較
 
+--- 
+
 ##### Key
 
 重要な技術、手法
@@ -36,6 +38,8 @@ Twitter: [@G2U](https://twitter.com/G2U)
 
 検証・評価方法
 
+---
+
 ##### Discussion
 
 議論
@@ -43,7 +47,6 @@ Twitter: [@G2U](https://twitter.com/G2U)
 ##### Next
 
 参考文献などから次に読むべきと判断した論文
-
 
 ---
 
@@ -57,6 +60,8 @@ Twitter: [@G2U](https://twitter.com/G2U)
 
 先行研究との比較
 
+--- 
+
 ##### Key
 
 重要な技術、手法
@@ -64,6 +69,8 @@ Twitter: [@G2U](https://twitter.com/G2U)
 ##### Evaluation
 
 検証・評価方法
+
+---
 
 ##### Discussion
 
