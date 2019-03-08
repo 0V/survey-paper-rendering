@@ -58,13 +58,13 @@ Twitter: [@G2U](https://twitter.com/G2U)
 
 ##### Overview
 
-不均質な関与媒質における効率的な light pass 計算手法の提案
+不均質な関与媒質における効率的な light path 計算手法の提案
 
 サンプリングコストに応じて自動的に空間分割を行う
 
 ##### Contribute
 
-既存の light pass の計算手法[Raab et al. 2006]と比較して同じ計算時間で遥かに多い light pass を得られた
+既存の light path の計算手法[Raab et al. 2006]と比較して同じ計算時間で遥かに多い light path を得られた
 
 --- 
 
