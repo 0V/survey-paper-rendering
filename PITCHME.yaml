@@ -1,6 +1,6 @@
 title : "Survey: Pepers of Rendering"
-controls-layout : edges
-mousewheel : true
+layout : center-left
+mousewheel : false
 theme : white
 highlight : monokai-sublime
 code-line-numbers : true
