@@ -58,17 +58,20 @@ Twitter: [@G2U](https://twitter.com/G2U)
 
 ##### Overview
 
-不均質な関与媒質におけるサンプリング手法の提案
+不均質な関与媒質における効率的な light pass 計算手法の提案
 
 サンプリングコストに応じて自動的に空間分割を行う
 
 ##### Contribute
 
-先行研究との比較
+既存の light pass の計算手法[Raab et al. 2006]と比較して同じ計算時間で遥かに多い light pass を得られた
 
 --- 
 
 ##### Key
+
+unbiasedness: 推定量の期待値が母集団の真の値と一致する性質。例えば標本平均はunbiasednessを持つ（大数の法則より）。
+
 
 kd-treeを用いる
 
