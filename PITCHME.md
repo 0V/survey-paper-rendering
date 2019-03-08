@@ -58,7 +58,9 @@ Twitter: [@G2U](https://twitter.com/G2U)
 
 ##### Overview
 
-概要
+不均質な関与媒質におけるサンプリング手法の提案
+
+サンプリングコストに応じて自動的に空間分割を行う
 
 ##### Contribute
 
@@ -68,7 +70,7 @@ Twitter: [@G2U](https://twitter.com/G2U)
 
 ##### Key
 
-重要な技術、手法
+kd-treeを用いる
 
 ##### Evaluation
 
