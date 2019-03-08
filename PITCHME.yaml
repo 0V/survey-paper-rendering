@@ -1,7 +1,8 @@
 title : "Survey: Pepers of Rendering"
 layout : center-left
-mousewheel : false
+mousewheel : true
 theme : white
+theme-override : assets/css/main.css
 highlight : monokai-sublime
 code-line-numbers : true
 slide-number: true

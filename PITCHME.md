@@ -72,6 +72,7 @@ Twitter: [@G2U](https://twitter.com/G2U)
 
 kd-treeを用いる
 
+
 ##### Evaluation
 
 検証・評価方法
