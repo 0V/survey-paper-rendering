@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>survey-paper-rendering</title>
+
+<link rel="stylesheet" href="./assets/css/pptxjs.css">
+<link rel="stylesheet" href="./assets/css/nv.d3.min.css">
+
+<script type="text/javascript" src="./assets/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="./assets/js/jszip.min.js"></script>
+<script type="text/javascript" src="./assets/js/filereader.js"></script>
+<script type="text/javascript" src="./assets/js/d3.min.js"></script>
+<script type="text/javascript" src="./assets/js/nv.d3.min.js"></script>
+<script type="text/javascript" src="./assets/js/pptxjs.js"></script>
+<script type="text/javascript" src="./assets/js/divs2slides.js"></script>
+
+<script type="text/javascript" src="./assets/js/jquery.fullscreen-min.js"></script>
+
+<script type="text/javascript">
+    $(function() {
+
+var dirReader = dirEntry.createReader();
+dirReader.readEntries(
+  function(list){
+    // 表示先の内容を消去
+    document.getElementById("result").innerHTML = "";
+    // ファイル／ディレクトリの数だけ繰り返し
+    for(var i=0; i<list.length; i++){
+      var text = document.getElementById("result").innerHTML;
+      if (list[i].isFile){  // ファイルの場合
+        text += "[F]";
+      }else{
+        text += "[D]";
+      }
+      text += list[i].name+"<br>";
+      document.getElementById("result").innerHTML = text;
+    }
+  })
+    });
+</script>
+<style>
+	html, body { margin: 0; padding: 0; }
+	#warper { margin-right: auto; margin-left: auto; width: 900px; }
+</style>
+</head>
+<body>
+	<div id="warper">
+		<input id="uploadFileInput" type="file" />
+		<br><br>
+		<div id="container">
+			<input id="fullscreen-btn" type="button" value="Fullscreen" />
+			<br>
+			<div  id="result"></div>
+		</div>
+	</div>
+	    <form>
+      <p>ディレクトリ名：<input type="text" id="fsDirname" value="/"></p>
+      <input type="button" value="一覧を作成" id="createList">
+    </form>
+    <output id="result" ></output>
+    <script>
+      // クリックされたらディレクトリ内の一覧を作成する
+      document.getElementById("createList").addEventListener("click", function(){
+        window.webkitRequestFileSystem(
+          TEMPORARY,  // 一時的（テンポラリ）
+          0,    // 確保するサイズ
+          function(fs){ // 成功時のコールバック関数
+            // 一覧を生成
+            var dirname = document.getElementById("fsDirname").value;
+            fs.root.getDirectory(dirname, {},
+              function(dirEntry){
+                var dirReader = dirEntry.createReader();
+                dirReader.readEntries(
+                  function(list){
+                    // 表示先の内容を消去
+                    document.getElementById("result").innerHTML = "";
+                    // ファイル／ディレクトリの数だけ繰り返し
+                    for(var i=0; i<list.length; i++){
+                      var text = document.getElementById("result").innerHTML;
+                      if (list[i].isFile){  // ファイルの場合
+                        text += "[F]";
+                      }else{
+                        text += "[D]";
+                      }
+                      text += list[i].name+"<br>";
+                      document.getElementById("result").innerHTML = text;
+                    }
+                  },
+                  function(err){  // 失敗時のコールバック関数
+                    document.getElementById("result").innerHTML = "一覧エラー!!<br>"+err;
+                  }
+                );
+              },
+              function(err){  // 失敗時のコールバック関数
+                document.getElementById("result").innerHTML = "一覧取得エラー!!<br>"+err;
+              }
+            );
+          },
+          function(err){  // 失敗時のコールバック関数
+            document.getElementById("result").innerHTML = "エラー!!<br>"+err;
+          }
+        );
+      }, false);
+    </script>
+<script>
+$("#result").pptxToHtml({
+	pptxFileUrl: "template.pptx",
+	fileInputId: "uploadFileInput",
+	slideMode: false,
+	keyBoardShortCut: false,
+	slideModeConfig: {  //on slide mode (slideMode: true)
+	    first: 1, 
+	    nav: false, /** true,false : show or not nav buttons*/
+	    navTxtColor: "white", /** color */
+	    navNextTxt:"&#8250;", //">"
+	    navPrevTxt: "&#8249;", //"<"
+	    showPlayPauseBtn: false,/** true,false */
+	    keyBoardShortCut: false, /** true,false */
+	    showSlideNum: false, /** true,false */
+	    showTotalSlideNum: false, /** true,false */
+	    autoSlide: false, /** false or seconds (the pause time between slides) , F8 to active(keyBoardShortCut: true) */
+	    randomAutoSlide: false, /** true,false ,autoSlide:true */ 
+	    loop: false,  /** true,false */
+	    background: "black", /** false or color*/
+	    transition: "default", /** transition type: "slid","fade","default","random" , to show transition efects :transitionTime > 0.5 */
+	    transitionTime: 1 /** transition time in seconds */
+	}
+});
+</script>
+
+</body>
+</html>
