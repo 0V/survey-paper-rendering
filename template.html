@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>survey-paper-rendering</title>
+<title>survey-paper-rendering: #{PLACEMENT_NAME}</title>
 
 <link rel="stylesheet" href="./assets/css/screen.css">
 <link rel="stylesheet" href="./assets/css/pptxjs.css">
@@ -21,23 +21,18 @@
 
 <script type="text/javascript" src="./assets/js/jquery.fullscreen-min.js"></script>
 
-<script type="text/javascript">
-    $(function() {
-
-    });
-</script>
 </head>
 <body>
 	<div id="warper">
 		<div id="container">
+			<h1> #{PLACEMENT_NAME} </h1>
 			<div id="result"></div>
 		</div>
 	</div>
 
 <script>
 $("#result").pptxToHtml({
-	pptxFileUrl: "#{PLACEMENT_NAME}",
-	fileInputId: "uploadFileInput",
+	pptxFileUrl: "../ppts/#{PLACEMENT_NAME}.pptx",
 	slideMode: false,
 	keyBoardShortCut: false,
 	slideModeConfig: {
