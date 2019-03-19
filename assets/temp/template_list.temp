@@ -18,6 +18,6 @@
 </head>
 
 <body>
-    <div id="warper">
+    <div id="wrapper">
         <div id="container">
             <h1> ファイルリスト </h1>
