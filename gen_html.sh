@@ -33,11 +33,6 @@ for filepath in $ppt_files; do
     fi
 done
 
-# for FILE_PATH in ${fileary[@]}; do
-#     FILE_NAME=${FILE_PATH##*/}
-#     sed -e "s/#{PLACEMENT_NAME}/${FILE_NAME%.*}/g" ./template.html > ./slides/${FILE_NAME%.*}.html
-# done
-            
 cat <<EOS >> $index_file
         </div>
     </div>
