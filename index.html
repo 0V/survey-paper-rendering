@@ -25,17 +25,17 @@ var dirReader = dirEntry.createReader();
 dirReader.readEntries(
   function(list){
     // 表示先の内容を消去
-    document.getElementById("result").innerHTML = "";
+    document.getElementById("result_f").innerHTML = "";
     // ファイル／ディレクトリの数だけ繰り返し
     for(var i=0; i<list.length; i++){
-      var text = document.getElementById("result").innerHTML;
+      var text = document.getElementById("result_f").innerHTML;
       if (list[i].isFile){  // ファイルの場合
         text += "[F]";
       }else{
         text += "[D]";
       }
       text += list[i].name+"<br>";
-      document.getElementById("result").innerHTML = text;
+      document.getElementById("result_f").innerHTML = text;
     }
   })
     });
@@ -59,7 +59,7 @@ dirReader.readEntries(
       <p>ディレクトリ名：<input type="text" id="fsDirname" value="/"></p>
       <input type="button" value="一覧を作成" id="createList">
     </form>
-    <output id="result" ></output>
+    <output id="result_f" ></output>
     <script>
       // クリックされたらディレクトリ内の一覧を作成する
       document.getElementById("createList").addEventListener("click", function(){
@@ -75,31 +75,31 @@ dirReader.readEntries(
                 dirReader.readEntries(
                   function(list){
                     // 表示先の内容を消去
-                    document.getElementById("result").innerHTML = "";
+                    document.getElementById("result_f").innerHTML = "";
                     // ファイル／ディレクトリの数だけ繰り返し
                     for(var i=0; i<list.length; i++){
-                      var text = document.getElementById("result").innerHTML;
+                      var text = document.getElementById("result_f").innerHTML;
                       if (list[i].isFile){  // ファイルの場合
                         text += "[F]";
                       }else{
                         text += "[D]";
                       }
                       text += list[i].name+"<br>";
-                      document.getElementById("result").innerHTML = text;
+                      document.getElementById("result_f").innerHTML = text;
                     }
                   },
                   function(err){  // 失敗時のコールバック関数
-                    document.getElementById("result").innerHTML = "一覧エラー!!<br>"+err;
+                    document.getElementById("result_f").innerHTML = "一覧エラー!!<br>"+err;
                   }
                 );
               },
               function(err){  // 失敗時のコールバック関数
-                document.getElementById("result").innerHTML = "一覧取得エラー!!<br>"+err;
+                document.getElementById("result_f").innerHTML = "一覧取得エラー!!<br>"+err;
               }
             );
           },
           function(err){  // 失敗時のコールバック関数
-            document.getElementById("result").innerHTML = "エラー!!<br>"+err;
+            document.getElementById("result_f").innerHTML = "エラー!!<br>"+err;
           }
         );
       }, false);
