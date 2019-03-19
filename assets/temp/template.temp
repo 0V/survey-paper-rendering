@@ -26,7 +26,7 @@
 <body>
     <div id="wrapper">
         <div id="container">
-            <h1> #{PLACEMENT_NAME} </h1>
+            <h1>#{PLACEMENT_NAME}</h1>
             <div id="result"></div>
         </div>
     </div>
