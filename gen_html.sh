@@ -1,18 +1,12 @@
 
-
-files="./ppts/*"
-topfile="./index.html"
-template_list="./assets/temp/template_list.temp"
-template_html="./assets/temp/template.temp"
-slide_dir="slides"
-
 function find_files () {
-    target_dirpath="${1}/*"
+    local target_dirpath="${1}/*"
     for filepath in $target_dirpath; do
-        if [ -f $filepath ] ; then
-            FILE_NAME="${filepath##*/}"
-            FILE_WITH_FOLDER_NAME="${filepath#*ppts/}"
-            FOLDER_NAME="${1##*/}"
+        if [ -f "$filepath" ] ; then
+            echo "A $filepath"
+            local FILE_NAME="${filepath##*/}"
+            local FILE_WITH_FOLDER_NAME="${filepath#*ppts/}"
+            local FOLDER_NAME="${1##*/}"
             mkdir -p "./${slide_dir}/${FILE_WITH_FOLDER_NAME%/*}"
             sed -e "s/#{PLACEMENT_NAME}/${FOLDER_NAME}\/${FILE_NAME%.*}/g" $template_html > ./${slide_dir}/${FILE_WITH_FOLDER_NAME%.*}.html
             echo "            <a href=\"./${slide_dir}/${FILE_WITH_FOLDER_NAME%.*}.html\">  ${FILE_NAME%.*}  </a>" >> ./index.html
@@ -20,6 +14,13 @@ function find_files () {
         fi
     done
 }
+
+files="./ppts/*"
+topfile="./index.html"
+template_list="./assets/temp/template_list.temp"
+template_html="./assets/temp/template.temp"
+slide_dir="slides"
+
 
 echo "Start ..."
 
@@ -46,3 +47,4 @@ cat <<EOS >> $topfile
 EOS
 
 echo "Finished"
+
