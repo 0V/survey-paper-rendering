@@ -1,5 +1,5 @@
 #wrapper {
-	width: 850px;
+    width: 90%;
+    min-width: 80%;
 	margin: 0 auto;
-	background: #ccc;
 }
