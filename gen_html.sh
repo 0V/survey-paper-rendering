@@ -15,7 +15,7 @@ function find_files () {
             local FOLDER_NAME="${1##*/}"
             mkdir -p "./${slide_dir}/${FILE_WITH_FOLDER_NAME%/*}"
             sed -e "s/#{PLACEMENT_NAME}/${FOLDER_NAME}\/${FILE_NAME%.*}/g" "${template_html}" > "./${slide_dir}/${FILE_WITH_FOLDER_NAME%.*}.html"
-            echo "            <a href=\"./${slide_dir}/${FILE_WITH_FOLDER_NAME%.*}.html\">  ${FILE_NAME%.*}  </a>" >> "${index_file}"
+            echo "            <p><a href=\"./${slide_dir}/${FILE_WITH_FOLDER_NAME%.*}.html\">  ${FILE_NAME%.*}  </a></p>" >> "${index_file}"
             echo "      > ${FILE_NAME%.*}"
         fi
     done
