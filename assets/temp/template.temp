@@ -28,13 +28,11 @@
 </head>
 
 <body>
-    <div id="wrapper">
-        <div id="container">
-            <h1>#{PLACEMENT_NAME}</h1>
-            <div id="result"></div>
-        </div>
+    <div class="container">
+        <h1>#{PLACEMENT_NAME}</h1>
+        <div id="result"></div>
     </div>
-
+  
     <script>
         $("#result").pptxToHtml({
             pptxFileUrl: "../../ppts/#{PLACEMENT_NAME}.pptx",

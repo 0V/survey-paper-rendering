@@ -19,6 +19,5 @@
 </head>
 
 <body>
-    <div id="wrapper">
-        <div id="container">
-            <h1>ファイルリスト</h1>
+    <div class="container">
+        <h1>ファイルリスト</h1>
