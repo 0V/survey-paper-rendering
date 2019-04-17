@@ -4,7 +4,7 @@ ppt_files="./ppts/*"
 index_file="./slides/index.html"
 template_list="./assets/temp/template_list.temp"
 template_html="./assets/temp/template.temp"
-slide_dir="slides"
+slide_dir=""
 
 function find_files () {
     local target_dirpath="${1}/*"
