@@ -5,16 +5,28 @@ index_file="./mds/index.html"
 template_list="./assets/temp/template_list.temp"
 slide_dir="mds"
 
-function _encode() {
-    local _length="${#1}"
-    for (( _offset = 0 ; _offset < _length ; _offset++ )); do
-        _print_offset="${1:_offset:1}"
-        case "${_print_offset}" in
-            [a-zA-Z0-9.~_-]) printf "${_print_offset}" ;;
-            ' ') printf + ;;
-            *) printf '%%%X' "'${_print_offset}" ;;
+function urlencode() {
+    # urlencode <string>
+    old_lc_collate=$LC_COLLATE
+    LC_COLLATE=C
+    
+    local length="${#1}"
+    for (( i = 0; i < length; i++ )); do
+        local c="${1:i:1}"
+        case $c in
+            [a-zA-Z0-9.~_-]) printf "$c" ;;
+            *) printf '%%%02X' "'$c" ;;
         esac
     done
+    
+    LC_COLLATE=$old_lc_collate
+}
+
+function urldecode() {
+    # urldecode <string>
+
+    local url_encoded="${1//+/ }"
+    $2= '%b' "${url_encoded//%/\\x}"
 }
 
 function find_files () {
@@ -25,7 +37,7 @@ function find_files () {
             local FILE_WITH_FOLDER_NAME="${target_filepath#*mds/}"
             local FOLDER_NAME="${1##*/}"
             mkdir -p "./${slide_dir}/${FILE_WITH_FOLDER_NAME%/*}"
-            local url="_encode ${FILE_WITH_FOLDER_NAME%.*}"
+            local url=$(urlencode "${FILE_WITH_FOLDER_NAME%.*}")
             echo "        <p><a href=\"./${url}\">  ${FILE_NAME%.*}  </a></p>" >> "${index_file}"
             echo "      > ${FILE_NAME%.*}"
         fi
@@ -34,6 +46,7 @@ function find_files () {
 
 echo "Start ..."
 
+mkdir -p "${index_file%/*}"
 cp $template_list $index_file
 
 for filepath in $md_files; do

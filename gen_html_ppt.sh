@@ -49,20 +49,20 @@ function find_files () {
             local FILE_NAME="${target_filepath##*/}"
             local FILE_WITH_FOLDER_NAME="${target_filepath#*ppts/}"
             local FOLDER_NAME="${1##*/}"
+            local ENCODED_FILE_NAME=$(urlencode "${FILE_NAME%.*}")
+
             mkdir -p "./${slide_dir}/${FILE_WITH_FOLDER_NAME%/*}"
             
-            local ENCODED_FILE_NAME=""
-            urlencode ${FILE_NAME%.*} $ENCODED_FILE_NAME
-            echo $ENCODED_FILE_NAME
-            sed -e "s/#{PLACEMENT_NAME}/${FOLDER_NAME}\/${ENCODED_FILE_NAME%.*}/g" "${template_html}" > "./${slide_dir}/${FILE_WITH_FOLDER_NAME%.*}.html"
-#            echo "        <p><a href=\"./${url}.html\">  ${ENCODED_FILE_NAME%.*}  </a></p>" >> "${index_file}"#
-#            echo "      > ${FILE_NAME%.*}"
+            sed -e "s/#{PLACEMENT_NAME}/${FOLDER_NAME}\/${ENCODED_FILE_NAME%.*}/g" "${template_html}" > "./${slide_dir}/${FOLDER_NAME}/${ENCODED_FILE_NAME}.html"
+            echo "        <p><a href=\"./${url}.html\">  ${ENCODED_FILE_NAME%.*}  </a></p>" >> "${index_file}"#
+            echo "      > ${FILE_NAME%.*}"
         fi
     done
 }
 
 echo "Start ..."
 
+mkdir -p "${index_file%/*}"
 cp $template_list $index_file
 
 for filepath in $ppt_files; do
