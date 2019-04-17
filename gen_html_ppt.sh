@@ -6,18 +6,6 @@ template_list="./assets/temp/template_list.temp"
 template_html="./assets/temp/template.temp"
 slide_dir="slides"
 
-function _encode() {
-    local _length="${#1}"
-    for (( _offset = 0 ; _offset < _length ; _offset++ )); do
-        _print_offset="${1:_offset:1}"
-        case "${_print_offset}" in
-            [a-zA-Z0-9.~_-]) printf "${_print_offset}" ;;
-            ' ') printf + ;;
-            *) printf '%%%X' "'${_print_offset}" ;;
-        esac
-    done
-}
-
 function urlencode() {
     # urlencode <string>
     old_lc_collate=$LC_COLLATE
@@ -53,8 +41,8 @@ function find_files () {
 
             mkdir -p "./${slide_dir}/${FILE_WITH_FOLDER_NAME%/*}"
             
-            sed -e "s/#{PLACEMENT_NAME}/${FOLDER_NAME}\/${ENCODED_FILE_NAME%.*}/g" "${template_html}" > "./${slide_dir}/${FOLDER_NAME}/${ENCODED_FILE_NAME}.html"
-            echo "        <p><a href=\"./${url}.html\">  ${ENCODED_FILE_NAME%.*}  </a></p>" >> "${index_file}"#
+            sed -e "s/#{PLACEMENT_NAME}/${FOLDER_NAME}\/${FILE_NAME%.*}/g" "${template_html}" > "./${slide_dir}/${FOLDER_NAME}/${FILE_NAME%.*}.html"
+            echo "        <p><a href=\"./${FOLDER_NAME}/${ENCODED_FILE_NAME}.html\">  ${FILE_NAME%.*}  </a></p>" >> "${index_file}"
             echo "      > ${FILE_NAME%.*}"
         fi
     done
@@ -62,7 +50,7 @@ function find_files () {
 
 echo "Start ..."
 
-mkdir -p "${index_file%/*}"
+mkdir -p "./${slide_dir}"
 cp $template_list $index_file
 
 for filepath in $ppt_files; do
