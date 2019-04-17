@@ -38,7 +38,7 @@ cp $template_list $index_file
 
 for filepath in $md_files; do
     if [ -d "$filepath" ] ; then
-        echo "        <h2>${filepath##*/}</h2>" >> ./index.html
+        echo "        <h2>${filepath##*/}</h2>" >> $index_file
         echo "" >> ./index.html
         echo "Group : ${filepath##*/}"
         find_files "${filepath}"
