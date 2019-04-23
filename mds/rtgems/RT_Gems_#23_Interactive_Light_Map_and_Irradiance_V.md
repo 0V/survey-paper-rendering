@@ -178,6 +178,58 @@ halton 列は低次元でよく機能する。しかし大きい素数から生�
 
 
 
+## SCHEDULING TEXELS
 
+**Convergence culling**
+十分に収束しているテクセルはスケジュールを省く
+テクセルがサンプルされたら
+
+
+
+
+##  PERFORMANCE BUDGETING
+
+目標のレイトレ速度を16msから15％以内を安定とする。
+15％より大きかったらその分サンプリング数をへらす。
+減らす数は実験的に決めた90%にboostFactorをかけただけ。
+15%より大きかったらサンプリング数を増やす。増やすほうは（おそらく）慎重に行うために1/0.9倍にするだけでブーストしない。
+
+![](https://paper-attachments.dropbox.com/s_71FE04CA71DF5C04D9FF8215AD43A86832FC9550C6DD61209E559B0323F5BC70_1555585045976_image.png)
+
+
+
+## POST-PROCESS
+
+GIソルバーはプログレッシブに結果を出すため、数秒間では完了しない傾向。
+しかしすぐにアーティストに完成形のイメージを与えたい。
+ここでは３つの問題を解決する必要がある。
+
+
+- Black texel
+
+テクセルがirradianseを受け取らないか、無効とされている裏側の表面にサンプリングのレイがヒットしたときに発生。
+画像左の床を見るとわかる。テクセルの表面の中からサンプリングする点を選ぶが、例えば箱の内部からレイを飛ばしてしまうと、無効な裏面にレイが到達し黒くなる。ただし箱の外までテクセルが大きさを持つので、黒くなっている。
+
+この場合dilationフィルタをかけることで解決する（画像真ん中）
+
+なお、サンプルの一部のみが無効な点に到達するだけならば、有効なサンプルの平均によって答えを得るので問題がない。
+
+
+![](https://paper-attachments.dropbox.com/s_71FE04CA71DF5C04D9FF8215AD43A86832FC9550C6DD61209E559B0323F5BC70_1555585262104_image.png)
+
+
+
+- Noisy texels
+
+確率的な積分時のアンダーサンプリングによって現れる。
+variance-guided filterによってノイズリダクション。
+
+
+![](https://paper-attachments.dropbox.com/s_71FE04CA71DF5C04D9FF8215AD43A86832FC9550C6DD61209E559B0323F5BC70_1555587867315_image.png)
+
+
+
+##  参考になりそうな資料
+https://shikihuiku.wordpress.com/2018/04/21/spatiotemporal-variance-guided-filtering-real-time-reconstruction-for-path-traced-global-illumination%E3%82%92%E8%AA%AD%E3%82%93%E3%81%A7%E3%81%BF%E3%81%9F/
 
 
